@@ -8,7 +8,7 @@
       content="Cleverpath Solutions embeds senior SAP engineers with AI workers to clear delivery backlogs while keeping SAP teams in control."
     >
     <title>Cleverpath Solutions | Forward Deployed AI Engineering for SAP</title>
-    <link rel="stylesheet" href="styles.css?v=20260422-4">
+    <link rel="stylesheet" href="styles.css?v=20260422-5">
   </head>
   <body>
     <svg aria-hidden="true" class="sprite" xmlns="http://www.w3.org/2000/svg">
@@ -156,52 +156,76 @@
             </div>
           </div>
 
-          <div class="hero-map" aria-label="Cleverpath delivery orchestration flow">
+          <div class="hero-map new-flow" aria-label="Cleverpath delivery orchestration flow">
             <div class="model-row">
-              <span><svg aria-hidden="true"><use href="#icon-ai"></use></svg> Claude Code</span>
-              <span><svg aria-hidden="true"><use href="#icon-brain"></use></svg> Codex</span>
+              <span class="worker-pill">
+                <svg aria-hidden="true"><use href="#icon-ai"></use></svg>
+                <span><strong>Claude Code</strong><small>AI Worker</small></span>
+              </span>
+              <span class="worker-pill">
+                <svg aria-hidden="true"><use href="#icon-brain"></use></svg>
+                <span><strong>Codex</strong><small>AI Worker</small></span>
+              </span>
             </div>
             <div class="flow-row" role="list">
               <article class="flow-node" role="listitem">
-                <svg aria-hidden="true"><use href="#icon-github"></use></svg>
-                <strong>GitHub</strong>
-                <span>Issue</span>
+                <span class="node-icon"><svg aria-hidden="true"><use href="#icon-github"></use></svg></span>
+                <h3>GitHub Issue</h3>
+                <p>Functional user creates an issue using a template</p>
               </article>
               <span class="flow-arrow" aria-hidden="true"></span>
               <article class="flow-node featured" role="listitem">
-                <svg aria-hidden="true"><use href="#icon-network"></use></svg>
-                <strong>Cleverpath</strong>
-                <span>Orchestrator</span>
+                <span class="node-icon"><svg aria-hidden="true"><use href="#icon-network"></use></svg></span>
+                <h3>Cleverpath Orchestrator</h3>
+                <p>Receives webhook, creates branch, and orchestrates AI workers</p>
               </article>
               <span class="flow-arrow" aria-hidden="true"></span>
               <article class="flow-node" role="listitem">
-                <svg aria-hidden="true"><use href="#icon-brain"></use></svg>
-                <strong>AI</strong>
-                <span>Worker</span>
+                <span class="node-icon"><svg aria-hidden="true"><use href="#icon-brain"></use></svg></span>
+                <h3>AI Worker</h3>
+                <p>Claude Code or Codex generates code, tests, and artifacts</p>
               </article>
               <span class="flow-arrow" aria-hidden="true"></span>
               <article class="flow-node" role="listitem">
-                <svg aria-hidden="true"><use href="#icon-code"></use></svg>
-                <strong>PR +</strong>
-                <span>Review</span>
+                <span class="node-icon blue"><svg aria-hidden="true"><use href="#icon-code"></use></svg></span>
+                <h3>PR + Review</h3>
+                <p>Code, tests, and checks are posted on the pull request</p>
               </article>
               <span class="flow-arrow" aria-hidden="true"></span>
               <article class="flow-node accent" role="listitem">
-                <svg aria-hidden="true"><use href="#icon-box"></use></svg>
-                <strong>abapGit +</strong>
-                <span>Transport</span>
+                <span class="node-icon amber"><svg aria-hidden="true"><use href="#icon-box"></use></svg></span>
+                <h3>abapGit + Transport</h3>
+                <p>On merge, code is pulled via abapGit and transport is created</p>
               </article>
               <span class="flow-arrow" aria-hidden="true"></span>
               <article class="flow-node sap" role="listitem">
                 <span class="sap-mark">SAP</span>
-                <strong>SAP</strong>
-                <span>S/4HANA</span>
+                <h3>SAP S/4HANA</h3>
+                <p>Deployed to DEV through standard SAP transports</p>
               </article>
             </div>
             <div class="control-row">
-              <span>ATC</span>
-              <span><svg aria-hidden="true"><use href="#icon-review"></use></svg> Audit Log</span>
-              <span><svg aria-hidden="true"><use href="#icon-person"></use></svg> Human Review</span>
+              <span>
+                <svg aria-hidden="true"><use href="#icon-shield"></use></svg>
+                <strong>ATC</strong>
+                <small>Quality gates and static checks</small>
+              </span>
+              <span>
+                <svg aria-hidden="true"><use href="#icon-review"></use></svg>
+                <strong>Audit Log</strong>
+                <small>Full traceability of every action</small>
+              </span>
+              <span>
+                <svg aria-hidden="true"><use href="#icon-person"></use></svg>
+                <strong>Human Review</strong>
+                <small>Senior developer review before merge</small>
+              </span>
+            </div>
+            <div class="assurance-row" aria-label="Governance guarantees">
+              <span><svg aria-hidden="true"><use href="#icon-lock"></use></svg><strong>Governed &amp; Secure</strong><small>Logged, reviewable, and never direct to production</small></span>
+              <span><svg aria-hidden="true"><use href="#icon-shield"></use></svg><strong>Human in the Loop</strong><small>Mandatory review before any code is merged or transported</small></span>
+              <span><svg aria-hidden="true"><use href="#icon-box"></use></svg><strong>Enterprise Ready</strong><small>Your GitHub. Your SAP. Your data. Your rules.</small></span>
+              <span><svg aria-hidden="true"><use href="#icon-review"></use></svg><strong>End-to-End Audit</strong><small>Every action is attributable, traceable, and exportable</small></span>
             </div>
           </div>
         </div>
