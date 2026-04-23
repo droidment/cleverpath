@@ -105,7 +105,7 @@ body svg:not(.sprite) {
 
 .nav-wrap {
   width: min(100% - 48px, 1410px);
-  min-height: 72px;
+  min-height: 84px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -123,6 +123,11 @@ body svg:not(.sprite) {
   letter-spacing: 0;
   line-height: 1;
   white-space: nowrap;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 5px;
 }
 
 .brand-mark {
@@ -155,6 +160,19 @@ body svg:not(.sprite) {
   bottom: -7px;
   height: 2px;
   background: linear-gradient(90deg, var(--green), rgba(166, 84, 50, 0.56), transparent);
+}
+
+.brand .brand-name::after {
+  display: none;
+}
+
+.brand-tagline {
+  color: var(--green);
+  font-family: var(--sans);
+  font-size: clamp(0.82rem, 0.9vw, 0.98rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  line-height: 1;
 }
 
 .nav-links {
@@ -1409,6 +1427,15 @@ h3 {
     font-size: clamp(1.85rem, 7.2vw, 2.3rem);
     gap: 10px;
     white-space: normal;
+  }
+
+  .brand-copy {
+    gap: 5px;
+  }
+
+  .brand-tagline {
+    font-size: 0.74rem;
+    letter-spacing: 0.035em;
   }
 
   .brand-mark {
