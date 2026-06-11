@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>How It Works: Issue to SAP Transport — Cleverpath Solutions</title>
+    <meta
+      name="description"
+      content="From GitHub issue to SAP transport in seven governed steps — AI workers, human review gates, ATC checks, and a full audit trail."
+    >
+    <link rel="canonical" href="https://cleverpathai-99e1c.web.app/how-it-works">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cleverpathai-99e1c.web.app/how-it-works">
+    <meta property="og:title" content="How It Works: Issue to SAP Transport — Cleverpath Solutions">
+    <meta property="og:description" content="From GitHub issue to SAP transport in seven governed steps — AI workers, human review gates, ATC checks, and a full audit trail.">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/InterVariable.woff2">
+    <link rel="stylesheet" href="/css/main.css?v=20260611-1">
+    <script src="/js/main.js?v=20260611-1" defer></script>
+    <script src="/js/pipeline.js?v=20260611-1" defer></script>
+  </head>
+  <body data-page="how-it-works">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- BEGIN shared header -->
+    <header class="site-header">
+      <div class="shell nav-wrap">
+        <a class="brand" href="/" aria-label="Cleverpath Solutions home">
+          <span class="brand-mark" aria-hidden="true">C</span>
+          <span class="brand-copy">
+            <span class="brand-name">Cleverpath Solutions</span>
+            <span class="brand-tagline">Embrace the exponential</span>
+          </span>
+        </a>
+        <button class="nav-toggle" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">
+          <svg class="open-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="close-glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <a href="/services">Services</a>
+          <a href="/how-it-works" aria-current="page">How It Works</a>
+          <a href="/security">Security</a>
+          <a href="/contact">Contact</a>
+          <a class="btn btn-primary" href="https://cal.com/cleverpath-waftpa/fit-call">Book a Fit Call</a>
+        </nav>
+      </div>
+    </header>
+    <!-- END shared header -->
+
+    <main id="main">
+      <section class="page-hero">
+        <div class="shell">
+          <div class="section-head">
+            <span class="eyebrow">How it works</span>
+            <h1>From GitHub issue to SAP transport — governed end to end.</h1>
+            <p class="lede">
+              GitHub is the control plane. Cleverpath is the orchestrator. Your S/4HANA
+              system stays the system of record. Here is every step a change takes.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7 steps -->
+      <section class="section">
+        <div class="shell">
+          <div class="section-head center">
+            <span class="eyebrow">The pipeline</span>
+            <h2>Seven steps, three control gates</h2>
+          </div>
+          <div class="step-rows" data-reveal>
+            <div class="step-row">
+              <span class="step-num">1</span>
+              <div>
+                <h3>A functional user opens a GitHub issue</h3>
+                <p>No developer required to start. A guided issue template captures the business need in plain language — the report, workflow, value help, or custom field you've been waiting on.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">2</span>
+              <div>
+                <h3>Cleverpath receives the webhook and creates a branch</h3>
+                <p>The orchestrator picks up the issue instantly, creates a dedicated branch, and dispatches the right AI worker for the job — Claude Code or Codex.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">3</span>
+              <div>
+                <h3>The AI worker generates the change</h3>
+                <p>CDS views, RAP behavior, services, annotations, and unit tests — generated against your system's real metadata via our custom MCP server.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">4</span>
+              <div>
+                <h3>Tests run in a sandbox client <span class="gate-tag">Control gate</span></h3>
+                <p>Unit tests, abaplint, and ATC checks run before any human spends a minute on review. Failures go back to the worker, not to your team.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">5</span>
+              <div>
+                <h3>A senior developer reviews the PR <span class="gate-tag">Control gate</span></h3>
+                <p>A human expert — ours or yours — reviews the code, the tests, and the checks. Nothing merges without explicit senior approval. This gate is mandatory and cannot be bypassed.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">6</span>
+              <div>
+                <h3>On merge, abapGit pulls the code and a transport is created</h3>
+                <p>The merge is the trigger. Code lands in your DEV system via abapGit and a standard SAP transport is created — the same release process you run today.</p>
+              </div>
+            </div>
+            <div class="step-row">
+              <span class="step-num">7</span>
+              <div>
+                <h3>Every action is logged and attributable <span class="gate-tag">Control gate</span></h3>
+                <p>Who asked, what was generated, who reviewed, what shipped — the full chain is recorded, exportable, and ready for your auditors.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Architecture -->
+      <section class="section section-alt">
+        <div class="shell">
+          <div class="section-head center">
+            <span class="eyebrow">Architecture</span>
+            <h2>The orchestration flow</h2>
+          </div>
+          <div class="pipe-panel">
+            <div class="pipe-head">
+              <span class="pipe-title">Issue in. Transport out.</span>
+              <div class="worker-pills">
+                <span class="worker-pill">
+                  <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-ai"></use></svg>
+                  Claude Code&nbsp;<small>AI worker</small>
+                </span>
+                <span class="worker-pill">
+                  <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-brain"></use></svg>
+                  Codex&nbsp;<small>AI worker</small>
+                </span>
+              </div>
+            </div>
+            <ol class="pipe">
+              <li class="pipe-node">
+                <span class="node-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-github"></use></svg></span>
+                <span class="node-text">
+                  <h3>GitHub Issue</h3>
+                  <p>Functional user creates an issue from a template</p>
+                </span>
+              </li>
+              <li class="pipe-link" aria-hidden="true"></li>
+              <li class="pipe-node">
+                <span class="node-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-network"></use></svg></span>
+                <span class="node-text">
+                  <h3>Orchestrator</h3>
+                  <p>Webhook received, branch created, AI worker dispatched</p>
+                </span>
+              </li>
+              <li class="pipe-link" aria-hidden="true"></li>
+              <li class="pipe-node">
+                <span class="node-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-brain"></use></svg></span>
+                <span class="node-text">
+                  <h3>AI Worker</h3>
+                  <p>Code, tests, and artifacts generated</p>
+                </span>
+              </li>
+              <li class="pipe-link" aria-hidden="true"></li>
+              <li class="pipe-node">
+                <span class="node-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-review"></use></svg></span>
+                <span class="node-text">
+                  <h3>PR + Review</h3>
+                  <p>Senior engineer reviews before merge</p>
+                </span>
+              </li>
+              <li class="pipe-link" aria-hidden="true"></li>
+              <li class="pipe-node">
+                <span class="node-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-box"></use></svg></span>
+                <span class="node-text">
+                  <h3>abapGit + Transport</h3>
+                  <p>Code pulled, transport created on merge</p>
+                </span>
+              </li>
+              <li class="pipe-link" aria-hidden="true"></li>
+              <li class="pipe-node">
+                <span class="node-icon"><span class="sap-chip" aria-hidden="true">SAP</span></span>
+                <span class="node-text">
+                  <h3>SAP S/4HANA</h3>
+                  <p>Deployed to DEV via standard transports</p>
+                </span>
+              </li>
+            </ol>
+            <div class="pipe-controls">
+              <span>
+                <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-shield"></use></svg>
+                <span><strong>ATC</strong> — quality gates and static checks</span>
+              </span>
+              <span>
+                <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-review"></use></svg>
+                <span><strong>Audit log</strong> — full traceability of every action</span>
+              </span>
+              <span>
+                <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-person"></use></svg>
+                <span><strong>Human review</strong> — senior approval before merge</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tech stack -->
+      <section class="section">
+        <div class="shell">
+          <div class="section-head center">
+            <span class="eyebrow">Under the hood</span>
+            <h2>The technical stack we bring</h2>
+          </div>
+          <div class="grid-3">
+            <div class="card">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-github"></use></svg></span>
+              <h3>GitHub</h3>
+              <p>The control plane — issues, branches, reviews, and merges drive everything.</p>
+            </div>
+            <div class="card">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-network"></use></svg></span>
+              <h3>Cleverpath orchestrator</h3>
+              <p>Receives webhooks, manages branches, and dispatches AI workers.</p>
+            </div>
+            <div class="card">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-ai"></use></svg></span>
+              <h3>Claude Code &amp; Codex</h3>
+              <p>The AI workers that generate code, tests, and artifacts.</p>
+            </div>
+            <div class="card">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-globe"></use></svg></span>
+              <h3>Tailscale</h3>
+              <p>Private, zero-trust connectivity into your DEV landscape.</p>
+            </div>
+            <div class="card">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-cloud"></use></svg></span>
+              <h3>GCP Cloud Run</h3>
+              <p>Default orchestrator runtime — or run it in your own cloud or VPC.</p>
+            </div>
+            <div class="card">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-shield"></use></svg></span>
+              <h3>abaplint + ATC</h3>
+              <p>Static checks and SAP's own quality gates on every change.</p>
+            </div>
+            <div class="card">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-link"></use></svg></span>
+              <h3>LiteLLM gateway</h3>
+              <p>One controlled gateway for all model traffic — observable and swappable.</p>
+            </div>
+            <div class="card">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-link"></use></svg></span>
+              <h3>Custom MCP server</h3>
+              <p>Gives AI workers safe, structured access to your SAP metadata.</p>
+            </div>
+            <div class="card">
+              <span class="card-icon"><svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-box"></use></svg></span>
+              <h3>Standard SAP transports</h3>
+              <p>Changes move through the release process you already trust.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- What stays in your hands -->
+      <section class="section section-alt">
+        <div class="shell">
+          <div class="section-head center">
+            <span class="eyebrow">Control</span>
+            <h2>What stays in your hands</h2>
+            <p class="lede">
+              Your GitHub org holds the code. Your SAP system stays the system of record.
+              Your reviewers approve every merge. The pipeline accelerates your process —
+              it never replaces your authority over it.
+            </p>
+          </div>
+          <div class="hero-ctas">
+            <a class="btn-ghost" href="/security">Read the full security overview <svg class="icon" aria-hidden="true"><use href="/assets/icons.svg#icon-arrow"></use></svg></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Closing CTA -->
+      <section class="closing">
+        <div class="shell">
+          <h2>See it live</h2>
+          <p>Book a fit call and we'll walk the pipeline on a real example from your backlog.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="https://cal.com/cleverpath-waftpa/fit-call">Book a 30-minute fit call</a>
+            <a class="btn btn-secondary" href="/contact">Send us a note</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- BEGIN shared footer -->
+    <footer class="site-footer">
+      <div class="shell">
+        <div class="footer-grid">
+          <div>
+            <a class="brand" href="/" aria-label="Cleverpath Solutions home">
+              <span class="brand-mark" aria-hidden="true">C</span>
+              <span class="brand-copy">
+                <span class="brand-name">Cleverpath Solutions</span>
+                <span class="brand-tagline">Embrace the exponential</span>
+              </span>
+            </a>
+            <p class="footer-blurb">AI-native SAP engineering, built for governed delivery.</p>
+          </div>
+          <nav aria-label="Footer">
+            <h3>Explore</h3>
+            <a href="/services">Services</a>
+            <a href="/how-it-works">How It Works</a>
+            <a href="/security">Security</a>
+            <a href="/contact">Contact</a>
+          </nav>
+          <div class="footer-contact">
+            <h3>Get in touch</h3>
+            <a href="mailto:hello@cleverpath.solutions">hello@cleverpath.solutions</a>
+            <a href="https://cal.com/cleverpath-waftpa/fit-call">Book a 30-minute fit call</a>
+          </div>
+        </div>
+        <div class="footer-legal">
+          <p>&copy; <span id="year">2026</span> Cleverpath Solutions. All rights reserved.</p>
+          <a class="linkedin-chip" href="https://www.linkedin.com/" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+    </footer>
+    <!-- END shared footer -->
+  </body>
+</html>

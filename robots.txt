@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cleverpathai-99e1c.web.app/sitemap.xml
