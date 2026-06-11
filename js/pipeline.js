@@ -3,6 +3,33 @@
 
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+  // Pixels of the element currently inside the viewport.
+  function visiblePx(el) {
+    var r = el.getBoundingClientRect();
+    var winH = window.innerHeight || document.documentElement.clientHeight;
+    return Math.min(r.bottom, winH) - Math.max(r.top, 0);
+  }
+
+  // "In view" by pixels, not ratio — a tall vertical pipeline in a short
+  // viewport can never reach a large intersection ratio.
+  function inView(el) {
+    var r = el.getBoundingClientRect();
+    if (!r.height) return false;
+    return visiblePx(el) >= Math.min(140, r.height * 0.5);
+  }
+
+  // Call handler on anything that could change what's visible. IO alone is
+  // not enough: embedded webviews defer IO callbacks while they (sometimes
+  // wrongly) report the document as hidden, so a polling watchdog backstops it.
+  function watchViewport(el, handler) {
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(handler, { threshold: [0, 0.1, 0.3] }).observe(el);
+    }
+    window.addEventListener("scroll", handler, { passive: true });
+    window.addEventListener("resize", handler, { passive: true });
+    window.setInterval(handler, 2000);
+  }
+
   /* ----------------------------------------------------------
      Hero pipeline animation (Home)
      Default markup/CSS renders the finished pipeline; this adds
@@ -29,7 +56,6 @@
     var HOLD_MS = 2200;
     var timer = null;
     var index = -1;
-    var inView = false;
 
     function clearStates() {
       nodes.forEach(function (n) {
@@ -87,39 +113,23 @@
       if (caption) caption.textContent = caption.getAttribute("data-default") || "";
     }
 
-    var observer = new IntersectionObserver(
-      function (entries) {
-        inView = entries[0].isIntersecting;
-        if (reduceMotion.matches) return;
-        if (inView && !document.hidden) {
-          start();
-        } else {
-          stop();
-        }
-      },
-      { threshold: 0.35 }
-    );
-    observer.observe(pipe);
-
-    document.addEventListener("visibilitychange", function () {
-      if (reduceMotion.matches) return;
-      if (document.hidden) {
-        stop();
-      } else if (inView) {
-        start();
-      }
-    });
-
-    var onMotionChange = function () {
+    function reconcile() {
       if (reduceMotion.matches) {
         stop();
-      } else if (inView && !document.hidden) {
-        start();
+        return;
       }
-    };
-    if (typeof reduceMotion.addEventListener === "function") {
-      reduceMotion.addEventListener("change", onMotionChange);
+      if (inView(pipe)) {
+        start();
+      } else {
+        stop();
+      }
     }
+
+    watchViewport(pipe, reconcile);
+    if (typeof reduceMotion.addEventListener === "function") {
+      reduceMotion.addEventListener("change", reconcile);
+    }
+    reconcile();
   }
 
   /* ----------------------------------------------------------
@@ -132,31 +142,29 @@
     if (!container || reduceMotion.matches) return;
 
     container.classList.add("reveal-ready");
-    var rows = container.querySelectorAll(".step-row");
+    var pending = Array.prototype.slice.call(container.querySelectorAll(".step-row"));
 
-    var observer = new IntersectionObserver(
-      function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-revealed");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+    function revealVisible() {
+      pending = pending.filter(function (row) {
+        if (visiblePx(row) > 40) {
+          row.classList.add("is-revealed");
+          return false;
+        }
+        return true;
+      });
+    }
 
-    rows.forEach(function (row) {
-      observer.observe(row);
-    });
+    watchViewport(container, revealVisible);
+    revealVisible();
 
     if (typeof reduceMotion.addEventListener === "function") {
       reduceMotion.addEventListener("change", function () {
         if (reduceMotion.matches) {
           container.classList.remove("reveal-ready");
-          rows.forEach(function (row) {
+          pending.forEach(function (row) {
             row.classList.add("is-revealed");
           });
+          pending = [];
         }
       });
     }
