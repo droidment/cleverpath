@@ -1,46 +1,80 @@
 /* ============================================================
-   Cleverpath Solutions — enterprise SaaS design system
+   Cleverpath Solutions — "Evergreen Ledger" design system
+   A typeset engineering field journal: warm paper, forest ink,
+   rust folios. Display: Fraunces. Body: Public Sans.
    ============================================================ */
 
 @font-face {
-  font-family: "Inter";
-  src: url("/assets/fonts/InterVariable.woff2") format("woff2");
+  font-family: "Fraunces";
+  src: url("/assets/fonts/FrauncesVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/assets/fonts/FrauncesItalicVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Public Sans";
+  src: url("/assets/fonts/PublicSansVariable.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 :root {
-  /* Color */
-  --blue-600: #0070f2;
-  --blue-700: #0058c4;
-  --blue-300: #6fb4ff;
-  --blue-100: #d9ecff;
-  --blue-50: #eef6ff;
-  --navy-900: #0b1f3a;
-  --navy-800: #102a4d;
-  --navy-700: #1f3a5f;
-  --slate-600: #44546a;
-  --slate-400: #7b8aa0;
-  --slate-300: #aab8cc;
-  --border: #e2e8f2;
-  --bg: #ffffff;
-  --bg-alt: #f6f9fc;
-  --success: #157a42;
-  --success-soft: #e2f4e9;
-  --amber: #b9690a;
-  --amber-soft: #fcefdc;
-  --white: #ffffff;
+  /* Paper */
+  --paper: #faf7ee;
+  --paper-deep: #f2edde;
+  --surface: #fffdf7;
 
-  /* Shape & elevation */
-  --radius: 10px;
-  --radius-lg: 16px;
-  --shadow-sm: 0 1px 3px rgba(11, 31, 58, 0.08);
-  --shadow-md: 0 8px 24px rgba(11, 31, 58, 0.1);
-  --shadow-lg: 0 20px 50px rgba(11, 31, 58, 0.16);
+  /* Ink */
+  --ink: #1c2a1e;
+  --body-ink: #444b40;
+  --muted: #6c6a5c;
+
+  /* Brand */
+  --forest: #174726;
+  --forest-deep: #103a1c;
+  --forest-soft: #e7efe4;
+  --rust: #a65432; /* ~5.0:1 on --paper — do NOT lighten (WCAG floor) */
+  --rust-deep: #8a4326;
+  --rust-soft: #f6e7d8;
+  --amber: #e0a458; /* dark-panel highlights only — fails contrast on paper */
+
+  /* Dark plate (hero panel, closing, footer) */
+  --plate: #14361f;
+  --plate-deep: #0f2a17;
+  --cream: #f3eedd; /* 11.4:1 on --plate */
+  --cream-dim: #c9d3c2;
+
+  /* Semantics — errors stay red; rust is brand-only, never error */
+  --success: #2e6e3f;
+  --success-soft: #e4efde;
+  --warn: #8a5a12; /* 4.96:1 on --warn-soft — AA floor, do not lighten */
+  --warn-soft: #f6ead2;
+  --error: #b03a2e;
+  --error-soft: #fdecea;
+
+  --border: #e0d8c3;
+  --border-deep: #c9a989;
+
+  /* Shape & elevation — print-flat */
+  --radius: 6px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgba(28, 42, 30, 0.06);
+  --shadow-md: 0 8px 22px rgba(28, 42, 30, 0.09);
+  --shadow-lg: 0 20px 48px rgba(28, 42, 30, 0.18);
 
   /* Type */
-  --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font: "Public Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
 
   /* Spacing */
   --space-1: 4px;
@@ -74,15 +108,23 @@ body {
   font-family: var(--font);
   font-size: 16px;
   line-height: 1.6;
-  color: var(--slate-600);
-  background: var(--bg);
+  color: var(--body-ink);
+  /* laid-paper grain at whisper volume */
+  background-image: radial-gradient(rgba(28, 42, 30, 0.035) 1px, transparent 1px);
+  background-size: 26px 26px;
+  background-color: var(--paper);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
 
+::selection {
+  background: #f0d9b8;
+  color: var(--ink);
+}
+
 a {
-  color: var(--blue-600);
+  color: var(--rust);
   text-decoration: none;
 }
 
@@ -97,25 +139,41 @@ h2,
 h3,
 h4 {
   margin: 0;
-  color: var(--navy-900);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-family: var(--display);
+  font-weight: 580;
+  font-optical-sizing: auto;
+  font-variation-settings: "SOFT" 0, "WONK" 0;
+  color: var(--ink);
+  line-height: 1.12;
+  letter-spacing: -0.015em;
   overflow-wrap: anywhere;
 }
 
 h1 {
-  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-size: clamp(2.4rem, 4.8vw, 3.6rem);
+  line-height: 1.06;
 }
 
 h2 {
-  font-size: clamp(1.6rem, 3vw, 2.25rem);
+  font-size: clamp(1.65rem, 3vw, 2.3rem);
 }
 
 h3 {
-  font-size: 1.125rem;
+  font-size: 1.15rem;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.005em;
+}
+
+/* the one sanctioned Fraunces flourish: hero italic phrase */
+.accent-phrase {
+  font-style: italic;
+  font-weight: 540;
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  color: var(--forest);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(166, 84, 50, 0.6);
+  text-underline-offset: 7px;
 }
 
 p {
@@ -153,8 +211,8 @@ p {
   z-index: 100;
   padding: 10px 16px;
   border-radius: 0 0 var(--radius) var(--radius);
-  background: var(--blue-600);
-  color: var(--white);
+  background: var(--forest);
+  color: var(--cream);
   font-weight: 600;
   transition: top 160ms ease;
 }
@@ -164,12 +222,19 @@ p {
 }
 
 :focus-visible {
-  outline: 3px solid var(--blue-600);
+  outline: 3px solid var(--rust);
   outline-offset: 2px;
 }
 
+/* warm surfaces are dark in the plate sections — switch to cream */
+.pipe-panel :focus-visible,
+.closing :focus-visible,
+.site-footer :focus-visible {
+  outline-color: var(--amber);
+}
+
 /* ------------------------------------------------------------
-   Buttons
+   Buttons — letterpress
    ------------------------------------------------------------ */
 
 .btn {
@@ -180,7 +245,7 @@ p {
   min-height: 46px;
   padding: 0 22px;
   border: 1px solid transparent;
-  border-radius: var(--radius);
+  border-radius: 4px;
   font-family: inherit;
   font-size: 1rem;
   font-weight: 600;
@@ -198,23 +263,26 @@ p {
 }
 
 .btn-primary {
-  background: var(--blue-600);
-  color: var(--white);
-  box-shadow: 0 4px 14px rgba(0, 112, 242, 0.28);
+  background: var(--forest);
+  color: var(--cream);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 1px 2px rgba(28, 42, 30, 0.25);
 }
 
 .btn-primary:hover {
-  background: var(--blue-700);
+  background: var(--forest-deep);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 0 #0b2a14;
 }
 
 .btn-secondary {
-  background: var(--white);
-  color: var(--blue-600);
-  border-color: var(--blue-600);
+  background: var(--surface);
+  color: var(--ink);
+  border-color: var(--ink);
 }
 
 .btn-secondary:hover {
-  background: var(--blue-50);
+  color: var(--rust-deep);
+  border-color: var(--rust);
+  background: var(--rust-soft);
 }
 
 .btn-ghost {
@@ -222,8 +290,12 @@ p {
   align-items: center;
   gap: 8px;
   min-height: 44px;
-  color: var(--blue-600);
+  color: var(--rust);
   font-weight: 600;
+}
+
+.btn-ghost:hover {
+  color: var(--rust-deep);
 }
 
 .btn-ghost .icon {
@@ -237,21 +309,23 @@ p {
 }
 
 /* ------------------------------------------------------------
-   Header / navigation
+   Header / navigation — cream masthead
    ------------------------------------------------------------ */
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(250, 247, 238, 0.96);
   backdrop-filter: blur(12px);
+  /* double hairline rule, masthead-style */
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 4px 0 -3px var(--border);
   transition: box-shadow 200ms ease;
 }
 
 .site-header.is-scrolled {
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 0 -3px var(--border), 0 10px 24px rgba(28, 42, 30, 0.08);
 }
 
 .nav-wrap {
@@ -265,7 +339,7 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  color: var(--navy-900);
+  color: var(--ink);
 }
 
 .brand-mark {
@@ -273,12 +347,13 @@ p {
   place-items: center;
   width: 38px;
   height: 38px;
-  border-radius: 9px;
-  background: linear-gradient(150deg, #1a8cff, var(--blue-600) 55%, var(--blue-700));
-  color: var(--white);
-  font-size: 1.25rem;
-  font-weight: 700;
-  box-shadow: 0 4px 12px rgba(0, 112, 242, 0.3);
+  border-radius: 4px;
+  background: var(--forest);
+  color: var(--cream);
+  font-family: var(--display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
 }
 
 .brand-copy {
@@ -287,18 +362,19 @@ p {
 }
 
 .brand-name {
-  font-size: 1.08rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-family: var(--display);
+  font-size: 1.16rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
   white-space: nowrap;
 }
 
 .brand-tagline {
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--blue-600);
+  letter-spacing: 0.1em;
+  font-variant-caps: all-small-caps;
+  color: var(--rust);
 }
 
 .nav-toggle {
@@ -309,8 +385,8 @@ p {
   padding: 10px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--white);
-  color: var(--navy-900);
+  background: var(--surface);
+  color: var(--ink);
   cursor: pointer;
 }
 
@@ -346,23 +422,28 @@ p {
   display: inline-flex;
   align-items: center;
   min-height: 40px;
-  padding: 0 14px;
-  border-radius: 8px;
-  color: var(--slate-600);
+  padding: 0 13px;
+  color: var(--body-ink);
   font-size: 0.95rem;
   font-weight: 500;
-  transition: color 160ms ease, background-color 160ms ease;
+  transition: color 160ms ease;
 }
 
 .site-nav > a:not(.btn):hover {
-  color: var(--blue-600);
-  background: var(--blue-50);
+  color: var(--forest);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--rust);
+  text-underline-offset: 6px;
 }
 
 .site-nav > a[aria-current="page"] {
-  color: var(--blue-600);
+  color: var(--forest);
   font-weight: 600;
-  background: var(--blue-50);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: var(--rust);
+  text-underline-offset: 6px;
 }
 
 .site-nav .btn {
@@ -373,16 +454,24 @@ p {
 }
 
 /* ------------------------------------------------------------
-   Sections
+   Sections — alternating cream sheets, folio-numbered
    ------------------------------------------------------------ */
 
+main {
+  counter-reset: folio;
+}
+
 .section {
-  padding-block: clamp(56px, 8vw, 96px);
+  padding-block: clamp(64px, 9vw, 112px);
 }
 
 .section-alt {
-  background: var(--bg-alt);
-  border-block: 1px solid var(--border);
+  /* denser grain, offset half a cell so textures never align */
+  background-image: radial-gradient(rgba(28, 42, 30, 0.045) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-position: 13px 13px;
+  background-color: var(--paper-deep);
+  border-block: 4px double var(--border);
 }
 
 .section-head {
@@ -395,20 +484,40 @@ p {
   text-align: center;
 }
 
+/* banknote ornament under centered heads: double rule + rust point */
+.section-head.center::after {
+  content: "";
+  display: block;
+  width: 72px;
+  height: 9px;
+  margin: 22px auto 0;
+  background:
+    radial-gradient(circle 3px at 50% 50%, var(--rust) 2.5px, transparent 3px),
+    linear-gradient(var(--border), var(--border)) 0 0 / 100% 1px no-repeat,
+    linear-gradient(var(--border), var(--border)) 0 100% / 100% 1px no-repeat;
+}
+
 .eyebrow {
   display: inline-block;
   margin-bottom: var(--space-3);
-  color: var(--blue-600);
-  font-size: 0.8125rem;
+  color: var(--rust);
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+/* folio numbers on journal sections (hero/page-hero eyebrows exempt) */
+.section .section-head .eyebrow::before {
+  counter-increment: folio;
+  content: "No. " counter(folio, decimal-leading-zero) " — ";
+  color: var(--muted);
 }
 
 .lede {
   margin-top: var(--space-4);
   font-size: 1.125rem;
-  color: var(--slate-600);
+  color: var(--body-ink);
   max-width: 60ch;
 }
 
@@ -437,24 +546,19 @@ p {
 }
 
 .badge-amber {
-  background: var(--amber-soft);
-  color: var(--amber);
-}
-
-.badge-info {
-  background: var(--blue-100);
-  color: var(--blue-700);
+  background: var(--warn-soft);
+  color: var(--warn);
 }
 
 /* ------------------------------------------------------------
-   Cards
+   Cards — print-flat
    ------------------------------------------------------------ */
 
 .card {
   padding: var(--space-5);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--surface);
   box-shadow: var(--shadow-sm);
   transition: box-shadow 200ms ease, transform 200ms ease, border-color 200ms ease;
 }
@@ -462,8 +566,8 @@ p {
 @media (hover: hover) {
   .card:hover {
     transform: translateY(-3px);
+    border-color: var(--border-deep);
     box-shadow: var(--shadow-md);
-    border-color: #cdd9ea;
   }
 }
 
@@ -477,9 +581,18 @@ p {
   width: 46px;
   height: 46px;
   margin-bottom: var(--space-4);
-  border-radius: 12px;
-  background: var(--blue-50);
-  color: var(--blue-600);
+  border: 1.5px solid var(--forest);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--forest);
+}
+
+/* quiet engraved variation — kills the identical-grid sameness */
+.grid-3 .card:nth-child(even) .card-icon,
+.grid-2 .card:nth-child(even) .card-icon {
+  border-color: var(--rust);
+  background: var(--rust-soft);
+  color: var(--rust-deep);
 }
 
 .card-icon .icon {
@@ -499,38 +612,36 @@ p {
   gap: var(--space-5);
 }
 
-.grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--space-5);
-}
-
-/* numbered pain-point cards */
+/* numbered pain-point cards — letterpress folios */
 .num-card {
   position: relative;
   padding: var(--space-5);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 
 .num-card .num {
   display: inline-grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   margin-bottom: var(--space-3);
+  border: 1px solid var(--rust);
   border-radius: 999px;
-  background: var(--navy-900);
-  color: var(--white);
-  font-size: 0.85rem;
-  font-weight: 700;
+  background: transparent;
+  color: var(--rust);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.05rem;
+  font-weight: 560;
+  font-variant-numeric: oldstyle-nums;
 }
 
 .num-card p {
   font-weight: 500;
-  color: var(--navy-700);
+  color: var(--ink);
 }
 
 /* ------------------------------------------------------------
@@ -579,46 +690,47 @@ p {
   padding: var(--space-6) var(--space-5) var(--space-5);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  background: var(--white);
+  background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 
 .tier-card.highlighted {
-  border: 2px solid var(--blue-600);
+  border: 2px solid var(--forest);
   box-shadow: var(--shadow-md);
 }
 
 .tier-card.waitlist {
-  border-style: dashed;
+  border: 1px dashed var(--border-deep);
 }
 
+/* a printed "recommended" bookmark, not a pill */
 .tier-flag {
   position: absolute;
   top: -14px;
   left: 50%;
   transform: translateX(-50%);
   padding: 4px 16px;
-  border-radius: 999px;
-  background: var(--blue-600);
-  color: var(--white);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  border: 1px solid var(--border-deep);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--rust-deep);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 0.85rem;
+  font-weight: 560;
   white-space: nowrap;
 }
 
 .tier-kicker {
-  font-size: 0.8125rem;
+  font-size: 0.8rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--slate-400);
+  color: var(--rust);
 }
 
 .tier-card h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
+  font-size: 1.35rem;
 }
 
 .tier-card .check-list {
@@ -629,11 +741,11 @@ p {
   padding-top: var(--space-4);
   border-top: 1px solid var(--border);
   font-weight: 600;
-  color: var(--navy-700);
+  color: var(--ink);
 }
 
 /* ------------------------------------------------------------
-   Stats (ROI)
+   Stats (ROI) — almanac entries
    ------------------------------------------------------------ */
 
 .stat-grid {
@@ -645,25 +757,26 @@ p {
 .stat {
   padding: var(--space-5);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--white);
-  box-shadow: var(--shadow-sm);
+  border-top: 3px solid var(--rust);
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: var(--surface);
 }
 
 .stat-label {
   display: block;
   margin-bottom: var(--space-3);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--slate-400);
+  color: var(--muted);
 }
 
 .stat-before {
   display: block;
   font-size: 0.95rem;
-  color: var(--slate-400);
+  font-style: italic;
+  color: var(--muted);
 }
 
 .stat-before::before {
@@ -673,10 +786,12 @@ p {
 .stat-after {
   display: block;
   margin-top: 2px;
-  font-size: clamp(1.6rem, 2.6vw, 2.25rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--blue-600);
+  font-family: var(--display);
+  font-size: clamp(1.7rem, 2.7vw, 2.35rem);
+  font-weight: 560;
+  font-variant-numeric: oldstyle-nums;
+  letter-spacing: -0.01em;
+  color: var(--forest);
   line-height: 1.1;
 }
 
@@ -684,18 +799,18 @@ p {
   display: block;
   margin-top: var(--space-2);
   font-size: 0.85rem;
-  color: var(--slate-600);
+  color: var(--body-ink);
 }
 
 /* ------------------------------------------------------------
-   Tables
+   Tables — operational surfaces keep tabular discipline
    ------------------------------------------------------------ */
 
 .table-wrap {
   overflow-x: auto;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 
@@ -704,6 +819,7 @@ p {
   min-width: 720px;
   border-collapse: collapse;
   font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .compare-table th,
@@ -715,14 +831,14 @@ p {
 }
 
 .compare-table thead th {
-  background: var(--bg-alt);
-  color: var(--navy-900);
+  background: var(--paper-deep);
+  color: var(--ink);
   font-weight: 700;
   white-space: nowrap;
 }
 
 .compare-table tbody th {
-  color: var(--navy-700);
+  color: var(--forest);
   font-weight: 600;
   white-space: nowrap;
 }
@@ -733,7 +849,7 @@ p {
 }
 
 /* ------------------------------------------------------------
-   Pipeline (animated hero centerpiece)
+   Pipeline — the engraved plate (animated hero centerpiece)
    ------------------------------------------------------------ */
 
 .pipe-panel {
@@ -742,10 +858,10 @@ p {
   padding: clamp(24px, 3.5vw, 44px);
   border-radius: var(--radius-lg);
   background:
-    radial-gradient(1200px 500px at 80% -10%, rgba(0, 112, 242, 0.22), transparent 60%),
-    radial-gradient(800px 400px at 5% 110%, rgba(0, 112, 242, 0.12), transparent 55%),
-    var(--navy-900);
-  box-shadow: var(--shadow-lg);
+    radial-gradient(1200px 500px at 80% -10%, rgba(224, 164, 88, 0.1), transparent 60%),
+    radial-gradient(800px 400px at 5% 110%, rgba(166, 84, 50, 0.08), transparent 55%),
+    var(--plate);
+  box-shadow: inset 0 0 0 1px rgba(243, 238, 221, 0.12), var(--shadow-lg);
   overflow: hidden;
 }
 
@@ -753,7 +869,7 @@ p {
   content: "";
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(243, 238, 221, 0.06) 1px, transparent 1px);
   background-size: 22px 22px;
   pointer-events: none;
 }
@@ -769,9 +885,10 @@ p {
 }
 
 .pipe-title {
-  color: var(--white);
-  font-size: 1.05rem;
-  font-weight: 600;
+  color: var(--cream);
+  font-family: var(--display);
+  font-size: 1.15rem;
+  font-weight: 560;
   letter-spacing: 0.01em;
 }
 
@@ -786,10 +903,10 @@ p {
   align-items: center;
   gap: 10px;
   padding: 8px 16px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(243, 238, 221, 0.22);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  color: var(--white);
+  background: rgba(243, 238, 221, 0.06);
+  color: var(--cream);
   font-size: 0.85rem;
   font-weight: 600;
 }
@@ -797,7 +914,7 @@ p {
 .worker-pill .icon {
   width: 18px;
   height: 18px;
-  color: var(--blue-300);
+  color: var(--amber);
 }
 
 .worker-pill small {
@@ -805,7 +922,7 @@ p {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--slate-300);
+  color: var(--cream-dim);
 }
 
 .pipe {
@@ -827,9 +944,9 @@ p {
   align-items: center;
   gap: 10px;
   padding: 18px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(243, 238, 221, 0.16);
+  border-radius: 10px;
+  background: rgba(243, 238, 221, 0.05);
   text-align: center;
   transition: opacity 360ms ease, border-color 360ms ease,
     box-shadow 360ms ease, transform 360ms ease, background-color 360ms ease;
@@ -841,8 +958,8 @@ p {
   width: 48px;
   height: 48px;
   border-radius: 999px;
-  background: rgba(0, 112, 242, 0.18);
-  color: var(--blue-300);
+  background: rgba(243, 238, 221, 0.1);
+  color: var(--cream-dim);
   transition: background-color 360ms ease, color 360ms ease;
 }
 
@@ -852,14 +969,17 @@ p {
 }
 
 .pipe-node h3 {
-  color: var(--white);
+  font-family: var(--font);
+  font-variation-settings: normal;
+  color: var(--cream);
   font-size: 0.92rem;
   font-weight: 700;
   line-height: 1.2;
+  letter-spacing: 0;
 }
 
 .pipe-node p {
-  color: var(--slate-300);
+  color: var(--cream-dim);
   font-size: 0.78rem;
   line-height: 1.35;
 }
@@ -873,8 +993,9 @@ p {
   width: 24px;
   height: 24px;
   border-radius: 999px;
-  background: var(--success);
-  color: var(--white);
+  border: 1px solid var(--amber);
+  background: var(--plate-deep);
+  color: var(--amber);
   opacity: 0;
   transform: scale(0.5);
   transition: opacity 280ms ease, transform 280ms ease;
@@ -885,6 +1006,7 @@ p {
   height: 14px;
 }
 
+/* SAP's own logo blue — a brand citation, not a theme leak */
 .sap-chip {
   display: inline-flex;
   align-items: center;
@@ -892,7 +1014,7 @@ p {
   min-width: 64px;
   min-height: 32px;
   background: #0a6ed1;
-  color: var(--white);
+  color: #fff;
   font-size: 1.2rem;
   font-weight: 900;
   letter-spacing: -0.04em;
@@ -906,24 +1028,24 @@ p {
   align-self: center;
   height: 2px;
   margin-inline: 2px;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(243, 238, 221, 0.18);
   border-radius: 2px;
   overflow: visible;
 }
 
 .pipe-link::before {
-  /* fill line */
+  /* fill line — warm ember gradient */
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, var(--blue-300), var(--blue-600));
+  background: linear-gradient(90deg, var(--amber), var(--rust));
   border-radius: 2px;
   transform: scaleX(0);
   transform-origin: left center;
 }
 
 .pipe-link::after {
-  /* traveling pulse dot */
+  /* traveling ember */
   content: "";
   position: absolute;
   top: 50%;
@@ -932,8 +1054,8 @@ p {
   height: 9px;
   margin-top: -4.5px;
   border-radius: 999px;
-  background: var(--blue-300);
-  box-shadow: 0 0 10px 2px rgba(111, 180, 255, 0.8);
+  background: var(--amber);
+  box-shadow: 0 0 10px 2px rgba(224, 164, 88, 0.8);
   opacity: 0;
 }
 
@@ -944,15 +1066,15 @@ p {
 
 .pipe--animated .pipe-node.is-active {
   opacity: 1;
-  border-color: var(--blue-600);
-  background: rgba(0, 112, 242, 0.14);
-  box-shadow: 0 0 0 1px var(--blue-600), 0 0 28px rgba(0, 112, 242, 0.45);
+  border-color: var(--amber);
+  background: rgba(224, 164, 88, 0.1);
+  box-shadow: 0 0 0 1px var(--amber), 0 0 24px rgba(224, 164, 88, 0.35);
   transform: scale(1.04);
 }
 
 .pipe--animated .pipe-node.is-active .node-icon {
-  background: var(--blue-600);
-  color: var(--white);
+  background: var(--rust);
+  color: var(--cream);
 }
 
 .pipe--animated .pipe-node.is-done {
@@ -999,17 +1121,26 @@ p {
   }
 }
 
+/* the figure caption — this plate is an engraving in a journal */
 .pipe-caption {
   position: relative;
   min-height: 28px;
   margin-top: var(--space-5);
   text-align: center;
-  color: var(--blue-300);
-  font-size: 0.9rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
+  color: var(--cream);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 0.98rem;
+  font-weight: 480;
+  letter-spacing: 0.01em;
 }
 
+.pipe-caption::before {
+  content: "Fig. 1 — ";
+  color: var(--amber);
+}
+
+/* colophon row */
 .pipe-controls {
   position: relative;
   display: grid;
@@ -1017,14 +1148,14 @@ p {
   gap: var(--space-3);
   margin-top: var(--space-5);
   padding-top: var(--space-5);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(243, 238, 221, 0.16);
 }
 
 .pipe-controls span {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--slate-300);
+  color: var(--cream-dim);
   font-size: 0.82rem;
   line-height: 1.3;
 }
@@ -1032,11 +1163,11 @@ p {
 .pipe-controls .icon {
   width: 20px;
   height: 20px;
-  color: var(--blue-300);
+  color: var(--amber);
 }
 
 .pipe-controls strong {
-  color: var(--white);
+  color: var(--cream);
   font-weight: 600;
 }
 
@@ -1047,10 +1178,8 @@ p {
 .hero {
   position: relative;
   padding-block: clamp(56px, 7vw, 96px) clamp(48px, 6vw, 80px);
-  background:
-    radial-gradient(900px 420px at 85% -20%, rgba(0, 112, 242, 0.1), transparent 60%),
-    linear-gradient(180deg, var(--bg-alt), var(--bg) 70%);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--paper-deep), var(--paper) 70%);
+  border-bottom: 4px double var(--border);
   overflow: hidden;
 }
 
@@ -1077,13 +1206,13 @@ p {
   margin-top: var(--space-6);
 }
 
-/* trust strip */
+/* trust strip — a row of engraved seals */
 .trust-strip {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 
@@ -1102,18 +1231,18 @@ p {
 .trust-strip .icon {
   width: 24px;
   height: 24px;
-  color: var(--blue-600);
+  color: var(--forest);
 }
 
 .trust-strip strong {
   display: block;
-  color: var(--navy-900);
+  color: var(--ink);
   font-size: 0.9rem;
   line-height: 1.2;
 }
 
 .trust-strip small {
-  color: var(--slate-400);
+  color: var(--muted);
   font-size: 0.78rem;
   line-height: 1.25;
 }
@@ -1136,7 +1265,7 @@ p {
   padding: var(--space-5);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 
@@ -1145,11 +1274,14 @@ p {
   place-items: center;
   width: 56px;
   height: 56px;
-  border-radius: 14px;
-  background: var(--blue-50);
-  color: var(--blue-600);
-  font-size: 1.3rem;
-  font-weight: 700;
+  border: 1px solid var(--forest);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--forest);
+  font-family: var(--display);
+  font-size: 1.4rem;
+  font-weight: 560;
+  font-variant-numeric: oldstyle-nums;
 }
 
 .step-row h3 {
@@ -1168,6 +1300,7 @@ p {
   border-radius: 999px;
   background: var(--success-soft);
   color: var(--success);
+  font-family: var(--font);
   font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.05em;
@@ -1200,7 +1333,7 @@ p {
 .faq details {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--white);
+  background: var(--surface);
   box-shadow: var(--shadow-sm);
 }
 
@@ -1210,7 +1343,7 @@ p {
   justify-content: space-between;
   gap: var(--space-4);
   padding: 16px 20px;
-  color: var(--navy-900);
+  color: var(--ink);
   font-weight: 600;
   cursor: pointer;
   list-style: none;
@@ -1227,9 +1360,10 @@ p {
   place-items: center;
   width: 26px;
   height: 26px;
+  border: 1px solid var(--rust);
   border-radius: 999px;
-  background: var(--blue-50);
-  color: var(--blue-600);
+  background: transparent;
+  color: var(--rust);
   font-size: 1.1rem;
   font-weight: 600;
 }
@@ -1240,7 +1374,12 @@ p {
 
 .faq details > div {
   padding: 0 20px 18px;
-  color: var(--slate-600);
+  color: var(--body-ink);
+}
+
+.faq a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* ------------------------------------------------------------
@@ -1260,7 +1399,7 @@ p {
   padding: var(--space-6);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  background: var(--white);
+  background: var(--surface);
   box-shadow: var(--shadow-md);
 }
 
@@ -1270,7 +1409,7 @@ p {
 }
 
 .field label {
-  color: var(--navy-900);
+  color: var(--ink);
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -1281,11 +1420,12 @@ p {
   width: 100%;
   padding: 12px 14px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: var(--white);
-  color: var(--navy-900);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--ink);
   font-family: inherit;
   font-size: 1rem;
+  font-variant-numeric: tabular-nums;
   transition: border-color 160ms ease, box-shadow 160ms ease;
 }
 
@@ -1293,13 +1433,13 @@ p {
 .field select:focus,
 .field textarea:focus {
   outline: none;
-  border-color: var(--blue-600);
-  box-shadow: 0 0 0 3px rgba(0, 112, 242, 0.18);
+  border-color: var(--forest);
+  box-shadow: 0 0 0 3px rgba(23, 71, 38, 0.16);
 }
 
 .field input:user-invalid,
 .field textarea:user-invalid {
-  border-color: #c0392b;
+  border-color: var(--error);
 }
 
 .field-row {
@@ -1310,16 +1450,21 @@ p {
 
 .form-note {
   font-size: 0.85rem;
-  color: var(--slate-400);
+  color: var(--muted);
 }
 
 .form-error {
   display: none;
   padding: 12px 16px;
-  border-radius: 8px;
-  background: #fdecea;
-  color: #b03a2e;
+  border-radius: 4px;
+  background: var(--error-soft);
+  color: var(--error);
   font-size: 0.92rem;
+}
+
+.form-error a {
+  color: inherit;
+  text-decoration: underline;
 }
 
 .form-error.is-visible {
@@ -1358,30 +1503,30 @@ p {
   padding-left: 20px;
   display: grid;
   gap: 8px;
-  color: var(--slate-600);
+  color: var(--body-ink);
 }
 
 /* ------------------------------------------------------------
-   Closing CTA band
+   Closing CTA band — forest plate
    ------------------------------------------------------------ */
 
 .closing {
   padding-block: clamp(64px, 9vw, 110px);
   background:
-    radial-gradient(900px 400px at 50% 120%, rgba(0, 112, 242, 0.35), transparent 65%),
-    var(--navy-900);
+    radial-gradient(900px 400px at 50% 120%, rgba(166, 84, 50, 0.3), transparent 65%),
+    var(--plate);
   text-align: center;
 }
 
 .closing h2 {
-  color: var(--white);
-  font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+  color: var(--cream);
+  font-size: clamp(1.85rem, 3.4vw, 2.65rem);
 }
 
 .closing p {
   max-width: 56ch;
   margin: var(--space-4) auto 0;
-  color: var(--slate-300);
+  color: var(--cream-dim);
   font-size: 1.05rem;
 }
 
@@ -1389,24 +1534,34 @@ p {
   margin-top: var(--space-6);
 }
 
+.closing .btn-primary {
+  background: var(--rust);
+  color: #fff;
+}
+
+.closing .btn-primary:hover {
+  background: var(--rust-deep);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12), 0 2px 0 #6e351e;
+}
+
 .closing .btn-secondary {
   background: transparent;
-  border-color: rgba(255, 255, 255, 0.4);
-  color: var(--white);
+  border-color: rgba(243, 238, 221, 0.45);
+  color: var(--cream);
 }
 
 .closing .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(243, 238, 221, 0.08);
 }
 
 /* ------------------------------------------------------------
-   Footer
+   Footer — the colophon, one shade deeper than the plate
    ------------------------------------------------------------ */
 
 .site-footer {
-  background: var(--navy-900);
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--slate-300);
+  background: var(--plate-deep);
+  border-top: 4px double rgba(243, 238, 221, 0.18);
+  color: var(--cream-dim);
   padding-block: var(--space-8) var(--space-5);
 }
 
@@ -1415,16 +1570,30 @@ p {
   grid-template-columns: 1.4fr 1fr 1fr;
   gap: var(--space-7);
   padding-bottom: var(--space-6);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(243, 238, 221, 0.12);
 }
 
 .footer-grid h3 {
-  margin-bottom: var(--space-3);
-  color: var(--white);
+  position: relative;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-2);
+  color: var(--cream);
+  font-family: var(--font);
+  font-variation-settings: normal;
   font-size: 0.85rem;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+
+.footer-grid h3::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--rust);
 }
 
 .footer-grid nav,
@@ -1435,21 +1604,29 @@ p {
 }
 
 .footer-grid a {
-  color: var(--slate-300);
+  color: var(--cream-dim);
   transition: color 160ms ease;
 }
 
 .footer-grid a:hover {
-  color: var(--white);
+  color: var(--cream);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
 }
 
 .site-footer .brand {
-  color: var(--white);
+  color: var(--cream);
   margin-bottom: var(--space-3);
 }
 
+.site-footer .brand-mark {
+  background: var(--cream);
+  color: var(--plate-deep);
+}
+
 .site-footer .brand-tagline {
-  color: var(--blue-300);
+  color: var(--amber);
 }
 
 .footer-blurb {
@@ -1465,7 +1642,7 @@ p {
   gap: var(--space-3);
   padding-top: var(--space-5);
   font-size: 0.85rem;
-  color: var(--slate-400);
+  color: var(--cream-dim);
 }
 
 .linkedin-chip {
@@ -1473,15 +1650,15 @@ p {
   place-items: center;
   width: 34px;
   height: 34px;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 8px;
-  color: var(--white);
+  border: 1px solid rgba(243, 238, 221, 0.4);
+  border-radius: 4px;
+  color: var(--cream);
   font-weight: 700;
 }
 
 .linkedin-chip:hover {
-  border-color: var(--white);
-  color: var(--white);
+  border-color: var(--cream);
+  color: var(--cream);
 }
 
 /* ------------------------------------------------------------
@@ -1490,8 +1667,8 @@ p {
 
 .page-hero {
   padding-block: clamp(48px, 6vw, 80px);
-  background: linear-gradient(180deg, var(--bg-alt), var(--bg));
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--paper-deep), var(--paper));
+  border-bottom: 4px double var(--border);
 }
 
 .page-hero .section-head {
@@ -1504,9 +1681,10 @@ p {
   gap: 8px;
   margin-bottom: var(--space-4);
   padding: 6px 14px;
+  border: 1px solid rgba(138, 90, 18, 0.35);
   border-radius: 999px;
-  background: var(--amber-soft);
-  color: var(--amber);
+  background: var(--warn-soft);
+  color: var(--warn);
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -1514,7 +1692,8 @@ p {
 .fineprint {
   margin-top: var(--space-4);
   font-size: 0.85rem;
-  color: var(--slate-400);
+  font-style: italic;
+  color: var(--muted);
   max-width: 70ch;
 }
 
@@ -1531,29 +1710,29 @@ p {
   justify-content: center;
 }
 
-/* shield art (security page) */
+/* shield art (security page) — engraved forest & rust */
 .shield-art svg {
   width: min(100%, 200px);
   margin-inline: auto;
-  color: var(--blue-600);
+  color: var(--forest);
 }
 
 .shield-art .circuit {
   fill: none;
-  stroke: rgba(0, 112, 242, 0.3);
+  stroke: rgba(166, 84, 50, 0.36);
   stroke-width: 2;
 }
 
 .shield-art .big-shield {
-  fill: rgba(0, 112, 242, 0.08);
-  stroke: var(--blue-600);
+  fill: rgba(23, 71, 38, 0.09);
+  stroke: var(--forest);
   stroke-width: 5;
 }
 
 .shield-art rect,
 .shield-art path:not(.circuit):not(.big-shield) {
   fill: none;
-  stroke: var(--blue-600);
+  stroke: var(--forest);
   stroke-width: 5;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -1564,10 +1743,6 @@ p {
    ------------------------------------------------------------ */
 
 @media (max-width: 1080px) {
-  .grid-4 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .stat-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1614,7 +1789,7 @@ p {
   }
 
   .pipe-link::before {
-    background: linear-gradient(180deg, var(--blue-300), var(--blue-600));
+    background: linear-gradient(180deg, var(--amber), var(--rust));
     transform: scaleY(0);
     transform-origin: top center;
   }
@@ -1696,8 +1871,8 @@ p {
     gap: 4px;
     margin: 0;
     padding: var(--space-4);
-    background: var(--white);
-    border-bottom: 1px solid var(--border);
+    background: var(--paper);
+    border-bottom: 4px double var(--border);
     box-shadow: var(--shadow-md);
   }
 
@@ -1727,7 +1902,6 @@ p {
 
 @media (max-width: 720px) {
   .grid-2,
-  .grid-4,
   .stat-grid,
   .trust-strip {
     grid-template-columns: 1fr;
@@ -1754,7 +1928,7 @@ p {
   .step-row .step-num {
     width: 44px;
     height: 44px;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
   }
 
   .footer-grid {
